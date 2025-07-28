@@ -10,6 +10,10 @@ on:
 # This section defines the jobs to be run.
 jobs:
   build:
+    # This line is important! It gives the workflow permission to write the new plot back to your repository.
+    permissions:
+      contents: write
+      
     # The type of virtual machine to run the job on. 'ubuntu-latest' is a standard choice.
     runs-on: ubuntu-latest
 
@@ -23,7 +27,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10' # You can change this to your Python version
+          python-version: '3.10'
 
       # Step 3: Installs the necessary Python libraries from your requirements.txt file.
       - name: Install dependencies
@@ -41,6 +45,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add forecast_plot.png
-          # The following line will only commit if there are changes to the plot
           git diff --quiet && git diff --staged --quiet || git commit -m "Update forecast plot automatically"
           git push
