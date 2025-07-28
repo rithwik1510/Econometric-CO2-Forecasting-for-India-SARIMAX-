@@ -37,10 +37,12 @@ jobs:
 
       # Step 4: Runs your Python script to generate the new plot.
       - name: Run the forecast script
+        working-directory: ./Econometric-CO2-Forecasting-for-India-SARIMAX
         run: python forecast_co2.py
 
       # Step 5: Commits the newly generated 'forecast_plot.png' back to your repository.
       - name: Commit and push updated plot
+        working-directory: ./Econometric-CO2-Forecasting-for-India-SARIMAX
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
